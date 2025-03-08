@@ -1,7 +1,8 @@
 export function request(ctx) {
     const { input } = ctx.args;
+    console.log("kbResolver", input);
     return {
-      resourcePath: "/knowledgebases/F123456789/retrieve",
+      resourcePath: "/knowledgebases/WGM61WNU6K/retrieve",
       method: "POST",
       params: {
         headers: {
