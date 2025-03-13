@@ -122,7 +122,7 @@ export default function Hero() {
           </Button>
         </form>
         <p className="mt-6 text-center text-indigo-200 text-opacity-80">
-          "Not all who travel are lost...!"
+          "Not all who wonder are lost...!"
         </p>
       </div>
       <Button
