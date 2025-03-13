@@ -6,9 +6,11 @@ import { env } from "$amplify/env/readKnowledgebase"
 
 export const handler: Schema["readKnowledgebase"]["functionHandler"] = async (event) => {
   // Initialize the BedrockRuntimeClient with the region (use the appropriate region for your service)
-  const query_text = "tell me about Johnanthon the magician"
-  console.log("event",query_text)
+  //const query_text = "tell me about Johnanthon the magician"
+  
   console.log("event", event)
+  const query_text = event.arguments.prompt
+  console.log("query_text", query_text)
   const client = new BedrockAgentRuntimeClient({ region: "us-west-2" }); // Adjust region as needed
   const input = { // RetrieveRequest
     knowledgeBaseId: env.KB_ID, // required
