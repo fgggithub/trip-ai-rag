@@ -9,7 +9,7 @@ export const handler: Schema["readKnowledgebase"]["functionHandler"] = async (ev
   //const query_text = "tell me about Johnanthon the magician"
   
   console.log("event", event)
-  const query_text = event.arguments.prompt
+  const query_text = String(event.arguments.prompt)
   console.log("query_text", query_text)
   const client = new BedrockAgentRuntimeClient({ region: "us-west-2" }); // Adjust region as needed
   const input = { // RetrieveRequest
