@@ -1,5 +1,5 @@
 
-import {RetrieveCommand, BedrockAgentRuntimeClient} from "@aws-sdk/client-bedrock-agent-runtime"
+import {RetrieveCommand, BedrockAgentRuntimeClient, SearchType} from "@aws-sdk/client-bedrock-agent-runtime"
 import type { Schema } from "../../data/resource";
 import { env } from "$amplify/env/readKnowledgebase"
 
@@ -19,6 +19,7 @@ export const handler: Schema["readKnowledgebase"]["functionHandler"] = async (ev
     },
     retrievalConfiguration: { // KnowledgeBaseRetrievalConfiguration
       vectorSearchConfiguration: { // KnowledgeBaseVectorSearchConfiguration
+        SearchType: "Default",
         numberOfResults: Number(1),
       },
     },
