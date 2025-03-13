@@ -11,7 +11,7 @@ const KB_REGION = "us-west-2";
 
 // Replace with your own Knowledge Base ID
 // https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create.html
-const KB_ID = "0L1NPLMAKE";
+const KB_ID = "NRZCOEQP33";
 
 const backend = defineBackend({
   auth,

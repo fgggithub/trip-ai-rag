@@ -8,6 +8,7 @@ import { client } from "@/client";
 import BlinkingStars from "@/components/BlinkingStars";
 
 export default function Hero() {
+  console.log("In Hero")
   const navigate = useNavigate();
   const [story, setStory] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,10 @@ export default function Hero() {
       description: story,
     });
 
+    console.log("after handle submit", story)
+
     if (outputStory?.story) {
+      console.log("passed if story check")
       const data = { story: outputStory.story, title: outputStory.title };
       const id = await saveData(data);
       navigate(`/story/${id}`);
@@ -93,7 +97,7 @@ export default function Hero() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
             <Textarea
-              placeholder="Not all who travel are lost..."
+              placeholder="Tell me about your dream vacation.  Where to go and what to do..."
               value={story}
               onChange={(e) => setStory(e.target.value)}
               className="w-full h-40 p-4 text-lg bg-indigo-700 bg-opacity-50 rounded-lg border-2 border-indigo-500 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-300 transition-all duration-300 ease-in-out text-white placeholder-indigo-300"
@@ -113,13 +117,12 @@ export default function Hero() {
                 <span>Working hard to create a great trip...</span>
               </div>
             ) : (
-              "Create a Story"
+              "Create an exciting trip"
             )}
           </Button>
         </form>
         <p className="mt-6 text-center text-indigo-200 text-opacity-80">
-          "Whisper your travel desire to our AI agents, and watch as they bring your 
-          travel desires into words!"
+          "Not all who travel are lost...!"
         </p>
       </div>
       <Button

@@ -71,9 +71,9 @@ const schema = a.schema({
     .generation({
       aiModel: a.ai.model("Claude 3 Haiku"),
       systemPrompt:
-        "Generate a story and a title that's fun and exciting, " +
-        "leave it off in a cliff hanger. The story should be a " +
-        "fun magical story. The title should be interesting and " +
+        "Generate a travel itinerary and a title that's fun and exciting, " +
+        "The story should be a short and be in the form of an " +
+        "travel itinerary with suggested acivities based on input. The title should be interesting and " +
         "short.",
     })
     .arguments({

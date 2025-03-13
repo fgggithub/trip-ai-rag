@@ -8,6 +8,7 @@ import { StoryCard } from "@/components/StoryCard";
 import BlinkingStars from "@/components/BlinkingStars";
 
 export default function Chat() {
+  console.log("in chat start")
   const navigate = useNavigate();
 
   const [
