@@ -54,6 +54,8 @@ export default function Hero() {
       },
     }).result
 
+    console.log("Text upload result", textUploadResult)
+
 
     
 

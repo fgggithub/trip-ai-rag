@@ -15,9 +15,7 @@ Amplify.configure(config);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-    <ErrorBoundary>
       <App />
-      </ErrorBoundary>
     </BrowserRouter>
   </StrictMode>
 );
