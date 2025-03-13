@@ -14,8 +14,8 @@ const schema = a.schema({
     .conversation({
       aiModel: a.ai.model("Claude 3 Haiku"),
       systemPrompt:
-        "You are a story telling finder. You will assist " +
-        "the user in finding a story that matches the story string, " +
+        "You are an an expert at creating travel plans. You will assist " +
+        "the user in creating a travel experience that matches the story string, " +
         "title string or id.",
 
       tools: [

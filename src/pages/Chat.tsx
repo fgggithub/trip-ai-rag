@@ -25,7 +25,7 @@ export default function Chat() {
         <div className="p-4 border-b border-indigo-500 flex items-center space-x-4">
           <Wand2 className="w-8 h-8 text-yellow-300" />
           <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-400 font-serif">
-            Story Helper
+            Travel Chat Helper
           </h1>
         </div>
 
@@ -57,10 +57,10 @@ export default function Chat() {
             }}
             avatars={{
               user: {
-                username: "Erik",
+                username: "Fredk",
               },
               ai: {
-                username: "Story Helper:",
+                username: "Travel Helper:",
               },
             }}
           />

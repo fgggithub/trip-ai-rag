@@ -87,13 +87,13 @@ export default function Hero() {
         <Stars className="absolute bottom-4 right-4 w-6 h-6 text-yellow-300 animate-pulse" />
         <div className="flex items-center justify-center mb-8">
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-400 font-serif">
-            Demo AI Story Generator
+            Demo AI Travel Generator
           </h1>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
             <Textarea
-              placeholder="In a realm beyond imagination..."
+              placeholder="Not all who travel are lost..."
               value={story}
               onChange={(e) => setStory(e.target.value)}
               className="w-full h-40 p-4 text-lg bg-indigo-700 bg-opacity-50 rounded-lg border-2 border-indigo-500 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-300 transition-all duration-300 ease-in-out text-white placeholder-indigo-300"
@@ -110,7 +110,7 @@ export default function Hero() {
             {isLoading ? (
               <div className="flex items-center justify-center">
                 <Loader2 className="w-6 h-6 animate-spin mr-2" />
-                <span>Weaving Magic...</span>
+                <span>Working hard to create a great trip...</span>
               </div>
             ) : (
               "Create a Story"
@@ -118,8 +118,8 @@ export default function Hero() {
           </Button>
         </form>
         <p className="mt-6 text-center text-indigo-200 text-opacity-80">
-          "Whisper your story to the ancient spirits, and watch as they breathe
-          life into your words!"
+          "Whisper your travel desire to our AI agents, and watch as they bring your 
+          travel desires into words!"
         </p>
       </div>
       <Button
