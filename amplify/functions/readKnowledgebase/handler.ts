@@ -8,6 +8,7 @@ export const handler: Schema["readKnowledgebase"]["functionHandler"] = async (ev
   // Initialize the BedrockRuntimeClient with the region (use the appropriate region for your service)
   const query_text = "tell me about Johnanthon the magician"
   console.log("event",query_text)
+  console.log("event", event)
   const client = new BedrockAgentRuntimeClient({ region: "us-west-2" }); // Adjust region as needed
   const input = { // RetrieveRequest
     knowledgeBaseId: env.KB_ID, // required
