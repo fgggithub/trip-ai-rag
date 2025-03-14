@@ -12,7 +12,9 @@ const schema = a.schema({
     .authorization((allow) => [allow.authenticated()]),
   chat: a
     .conversation({
-      aiModel: a.ai.model("Claude 3 Haiku"),
+      aiModel: {
+          resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+      },
       systemPrompt:
         "You are an an expert at creating travel plans. You will assist " +
         "the user in creating a travel experience that matches the story string, " +
@@ -47,7 +49,8 @@ const schema = a.schema({
     .authorization((allow) => allow.owner()),
   summarizer: a
     .generation({
-      aiModel: a.ai.model("Claude 3 Haiku"),
+      aiModel: { resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+      },
       systemPrompt:
         "You are a helpful assistant that summarizes stories. " +
         "Give a concise summary of the supplied story. " +
