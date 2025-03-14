@@ -54,7 +54,7 @@ backend.conversationHandler.resources.lambda.addToRolePolicy(
   })
 );
 
-//const KnowledgeBaseDataSource =
+//const KnowledgeBaseDataSource =   
 //  backend.data.resources.graphqlApi.addHttpDataSource(
 //    "KnowledgeBaseDataSource",
 //    `https://bedrock-agent-runtime.${KB_REGION}.amazonaws.com`,
