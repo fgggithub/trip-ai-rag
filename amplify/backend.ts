@@ -1,6 +1,6 @@
 import { defineBackend } from "@aws-amplify/backend";
 import { auth } from "./auth/resource";
-import { data } from "./data/resource";
+import { data, conversationHandler, crossRegionModel, model  } from "./data/resource";
 import { generateImage, MODEL_ID } from "./functions/generateImage/resource";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { storage, knowledgeBaseBucket } from "./storage/resource";
@@ -21,6 +21,7 @@ const backend = defineBackend({
   getNews,
   readKnowledgebase,
   knowledgeBaseBucket,
+  conversationHandler,
 });
 
 backend.generateImage.resources.lambda.addToRolePolicy(
@@ -36,6 +37,20 @@ backend.readKnowledgebase.resources.lambda.addToRolePolicy(
     effect: Effect.ALLOW,
     actions: ["bedrock:Retrieve"],
     resources: [`*`],
+  })
+);
+
+backend.conversationHandler.resources.lambda.addToRolePolicy(
+  new PolicyStatement({
+    resources: [
+      `arn:aws:bedrock:us-west-2:[account-number]:inference-profile/${crossRegionModel}`,
+      `arn:aws:bedrock:us-west-2::foundation-model/${model}`,
+      `arn:aws:bedrock:us-east-1::foundation-model/${model}`,
+      `arn:aws:bedrock:us-east-2::foundation-model/${model}`,
+    ],
+    actions: [
+      'bedrock:InvokeModelWithResponseStream'
+    ],
   })
 );
 

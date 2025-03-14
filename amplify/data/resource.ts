@@ -3,6 +3,24 @@ import { generateImage } from "../functions/generateImage/resource";
 import { getNews } from "../functions/getNews/resource";
 import { readKnowledgebase } from "../functions/readKnowledgebase/resource";
 console.log("resource.ts")
+
+import { defineConversationHandlerFunction } from "@aws-amplify/backend-ai/conversation";
+
+
+export const model = 'anthropic.claude-3-5-sonnet-20241022-v2:0';
+export const crossRegionModel = `us.${model}`;
+
+export const conversationHandler = defineConversationHandlerFunction({
+  entry: "./conversationHandler.ts",
+  name: "conversationHandler",
+  models: [{ modelId: crossRegionModel }],
+});
+
+
+
+
+
+
 const schema = a.schema({
   Story: a
     .model({
@@ -13,7 +31,7 @@ const schema = a.schema({
   chat: a
     .conversation({
       aiModel: {
-          resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+          resourcePath: crossRegionModel,
       },
       systemPrompt:
         "You are an an expert at creating travel plans. You will assist " +
@@ -49,7 +67,7 @@ const schema = a.schema({
     .authorization((allow) => allow.owner()),
   summarizer: a
     .generation({
-      aiModel: { resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+      aiModel: { resourcePath: crossRegionModel,
       },
       systemPrompt:
         "You are a helpful assistant that summarizes stories. " +
@@ -72,7 +90,7 @@ const schema = a.schema({
     .authorization((allow) => [allow.authenticated()]),
   generateStory: a
     .generation({
-      aiModel: { resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+      aiModel: { resourcePath: crossRegionModel,
       },
       systemPrompt:
         "Generate a travel itinerary and a title that's fun and exciting, " +
