@@ -72,7 +72,8 @@ const schema = a.schema({
     .authorization((allow) => [allow.authenticated()]),
   generateStory: a
     .generation({
-      aiModel: a.ai.model("Claude 3 Haiku"),
+      aiModel: { resourcePath: "us.anthropic.claude-3-haiku-20240307-v1:0",
+      },
       systemPrompt:
         "Generate a travel itinerary and a title that's fun and exciting, " +
         "The story should be a short and be in the form of an " +
