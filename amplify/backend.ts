@@ -39,7 +39,7 @@ backend.readKnowledgebase.resources.lambda.addToRolePolicy(
     resources: [`*`],
   })
 );
-
+//support cross region
 backend.conversationHandler.resources.lambda.addToRolePolicy(
   new PolicyStatement({
     resources: [
