@@ -43,7 +43,7 @@ backend.readKnowledgebase.resources.lambda.addToRolePolicy(
 backend.conversationHandler.resources.lambda.addToRolePolicy(
   new PolicyStatement({
     resources: [
-      `arn:aws:bedrock:us-west-2:::inference-profile/${crossRegionModel}`,
+      `arn:aws:bedrock:us-west-2:703671928942:inference-profile/${crossRegionModel}`,
       `arn:aws:bedrock:us-west-2::foundation-model/${model}`,
       `arn:aws:bedrock:us-east-1::foundation-model/${model}`,
       `arn:aws:bedrock:us-east-2::foundation-model/${model}`,

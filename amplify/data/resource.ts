@@ -87,7 +87,7 @@ const schema = a.schema({
     .generation({
       aiModel: a.ai.model("Claude 3.5 Sonnet v2"),
       systemPrompt:
-        "Generate a travel itinerary and a title that's fun and exciting, " +
+        "Generate a travel itinerary and a title that's fun and exciting,  " +
         "The story should be a short and be in the form of an " +
         "travel itinerary with suggested acivities based on input. The title should be interesting and " +
         "short.",
