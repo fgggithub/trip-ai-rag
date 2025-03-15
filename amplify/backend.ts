@@ -49,7 +49,8 @@ backend.conversationHandler.resources.lambda.addToRolePolicy(
       `arn:aws:bedrock:us-east-2::foundation-model/${model}`,
     ],
     actions: [
-      'bedrock:InvokeModel'
+      'bedrock:InvokeModel',
+      'bedrock:InvokeModelWithResponseStream'
     ],
   })
 );
