@@ -17,10 +17,6 @@ export const conversationHandler = defineConversationHandlerFunction({
 });
 
 
-
-
-
-
 const schema = a.schema({
   Story: a
     .model({
@@ -37,7 +33,7 @@ const schema = a.schema({
         "You are an an expert at creating travel plans. You will assist " +
         "the user in creating a travel experience that matches the story string, " +
         "title string or id.",
-
+        handler: conversationHandler,
       tools: [
         a.ai.dataTool({
           name: "listStories",
@@ -67,8 +63,7 @@ const schema = a.schema({
     .authorization((allow) => allow.owner()),
   summarizer: a
     .generation({
-      aiModel: { resourcePath: crossRegionModel,
-      },
+      aiModel: a.ai.model("Claude 3.5 Sonnet v2"),
       systemPrompt:
         "You are a helpful assistant that summarizes stories. " +
         "Give a concise summary of the supplied story. " +
@@ -90,8 +85,7 @@ const schema = a.schema({
     .authorization((allow) => [allow.authenticated()]),
   generateStory: a
     .generation({
-      aiModel: { resourcePath: crossRegionModel,
-      },
+      aiModel: a.ai.model("Claude 3.5 Sonnet v2"),
       systemPrompt:
         "Generate a travel itinerary and a title that's fun and exciting, " +
         "The story should be a short and be in the form of an " +
