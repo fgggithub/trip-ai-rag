@@ -9,6 +9,7 @@ export const handler: Schema["getNews"]["functionHandler"] = async (event) => {
       env.NEWS_API_KEY
     }`
   );
+  console.log("event", event);
   const json = await res.json();
 
   const newsItem = json.articles[0];
