@@ -16,10 +16,7 @@ export const handler: Schema["getNews"]["functionHandler"] = async (event) => {
   console.log("event", event);
 
   const json = await res.json();
-  try{
-  if (json.status === "try error") {
-    throw new Error(json.message);
-  }
+  
 
   const newsItem = json.articles[0];
 
