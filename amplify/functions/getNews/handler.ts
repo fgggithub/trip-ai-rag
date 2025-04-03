@@ -11,10 +11,15 @@ export const handler: Schema["getNews"]["functionHandler"] = async (event) => {
   //);
 
   const res = await fetch(
-    `${URL}${encodeURIComponent(event.arguments.category ?? "")}&apiKey='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'`
+    `${URL}${encodeURIComponent(event.arguments.category ?? "")}&apiKey='a148e525ae6d4da4bddccf1a8a810154'`
   );
   console.log("event", event);
+
   const json = await res.json();
+  try{
+  if (json.status === "try error") {
+    throw new Error(json.message);
+  }
 
   const newsItem = json.articles[0];
 
