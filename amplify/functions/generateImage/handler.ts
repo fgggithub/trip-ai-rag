@@ -8,6 +8,7 @@ import { env } from "$amplify/env/generateImage";
 export const handler: Schema["generateImage"]["functionHandler"] = async (
   event
 ) => {
+ 
   const client = new BedrockRuntimeClient({ region: env.REGION });
   const res = await client.send(
     new InvokeModelCommand({
@@ -17,7 +18,7 @@ export const handler: Schema["generateImage"]["functionHandler"] = async (
       body: JSON.stringify({
         taskType: "TEXT_IMAGE",
         textToImageParams: {
-          text: event.arguments.prompt,
+          text: event.arguments.prompt?.slice(0, 512),
         },
         imageGenerationConfig: {
           cfgScale: 10,
