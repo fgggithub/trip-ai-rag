@@ -4,10 +4,14 @@ import { env } from "$amplify/env/getNews";
 const URL = "https://newsapi.org/v2/everything?q=";
 
 export const handler: Schema["getNews"]["functionHandler"] = async (event) => {
+  //const res = await fetch(
+  //  `${URL}${encodeURIComponent(event.arguments.category ?? "")}&apiKey=${
+  //    env.NEWS_API_KEY
+  //  }`
+  //);
+
   const res = await fetch(
-    `${URL}${encodeURIComponent(event.arguments.category ?? "")}&apiKey=${
-      env.NEWS_API_KEY
-    }`
+    `${URL}${encodeURIComponent(event.arguments.category ?? "")}&apiKey='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'`
   );
   console.log("event", event);
   const json = await res.json();
