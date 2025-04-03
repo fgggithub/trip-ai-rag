@@ -22,7 +22,7 @@ export const handler: Schema["generateImage"]["functionHandler"] = async (
         imageGenerationConfig: {
           cfgScale: 10,
           seed: 0,
-          quality: 1,
+          quality: "standard",
           height: 512,
           width: 512,
           numberOfImages: 1,
