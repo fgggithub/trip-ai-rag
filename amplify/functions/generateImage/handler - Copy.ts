@@ -15,22 +15,12 @@ export const handler: Schema["generateImage"]["functionHandler"] = async (
       contentType: "application/json",
       accept: "application/json",
       body: JSON.stringify({
-        taskType: "text_to_image",
-        textToImageParams: {
-          text: event.arguments.prompt,
-        },
-        imageGenerationConfig: {
-          cfgScale: 10,
-          seed: 0,
-          quality: 1,
-          height: 512,
-          width: 512,
-          numberOfImages: 1,
-        },
+        prompt: event.arguments.prompt,
+        mode: "text-to-image",
+        aspect_ratio: "1:1",
+        output_format: "jpeg",
       }),
     })
-       
-    
   );
 
   const jsonString = new TextDecoder().decode(res.body);
