@@ -15,7 +15,7 @@ export const handler: Schema["generateImage"]["functionHandler"] = async (
       contentType: "application/json",
       accept: "application/json",
       body: JSON.stringify({
-        taskType: "text_to_image",
+        taskType: "TEXT_IMAGE",
         textToImageParams: {
           text: event.arguments.prompt,
         },
