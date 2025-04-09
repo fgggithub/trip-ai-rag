@@ -8,7 +8,6 @@ import { env } from "$amplify/env/generateImage";
 export const handler: Schema["generateImage"]["functionHandler"] = async (
   event
 ) => {
- 
   const client = new BedrockRuntimeClient({ region: env.REGION });
   const res = await client.send(
     new InvokeModelCommand({
@@ -16,22 +15,12 @@ export const handler: Schema["generateImage"]["functionHandler"] = async (
       contentType: "application/json",
       accept: "application/json",
       body: JSON.stringify({
-        taskType: "TEXT_IMAGE",
-        textToImageParams: {
-          text: event.arguments.prompt?.slice(0, 512),
-        },
-        imageGenerationConfig: {
-          cfgScale: 10,
-          seed: 0,
-          quality: "standard",
-          height: 512,
-          width: 512,
-          numberOfImages: 1,
-        },
+        prompt: event.arguments.prompt,
+        mode: "text-to-image",
+        aspect_ratio: "1:1",
+        output_format: "jpeg",
       }),
     })
-       
-    
   );
 
   const jsonString = new TextDecoder().decode(res.body);
