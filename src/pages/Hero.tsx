@@ -11,7 +11,9 @@ export default function Hero() {
   console.log("In Hero")
   const navigate = useNavigate();
   const [story, setStory] = useState("");
+  const [prompt, setPrompt] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +24,8 @@ export default function Hero() {
     });
 
     console.log("after handle submit", story)
-    const prompt = story;
+    setPrompt(story);
+    
 
     if (outputStory?.story) {
       console.log("passed if story check")
@@ -48,7 +51,7 @@ export default function Hero() {
       story,
       title,
     });
-    let complete_story = `${prompt}\n${story}`;
+    const complete_story = `${prompt}\n${story}`;
     const textFileData = new Blob([complete_story], { type: 'text/plain' }); 
     console.log("textFileData", textFileData); // Create a Blob for the text file
     const textUploadResult = await uploadData({
