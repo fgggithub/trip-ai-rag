@@ -7,7 +7,7 @@ console.log("resource.ts")
 import { defineConversationHandlerFunction } from "@aws-amplify/backend-ai/conversation";
 
 
-export const model = 'us.anthropic.claude-3-5-sonnet-20241022-v2:0';
+export const model = 'anthropic.claude-3-5-sonnet-20241022-v2:0';
 
 export const crossRegionModel = `us.${model}`;
 
