@@ -22,6 +22,7 @@ export default function Hero() {
     });
 
     console.log("after handle submit", story)
+    const prompt = story;
 
     if (outputStory?.story) {
       console.log("passed if story check")
@@ -47,8 +48,8 @@ export default function Hero() {
       story,
       title,
     });
-
-    const textFileData = new Blob([story], { type: 'text/plain' }); 
+    let complete_story = `${prompt}\n${story}`;
+    const textFileData = new Blob([complete_story], { type: 'text/plain' }); 
     console.log("textFileData", textFileData); // Create a Blob for the text file
     const textUploadResult = await uploadData({
       path: `textfiles/${title}.txt`,  // Text file upload path
