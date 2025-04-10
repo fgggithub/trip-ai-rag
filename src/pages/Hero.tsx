@@ -24,7 +24,8 @@ export default function Hero() {
     });
 
     console.log("after handle submit", story)
-    setPrompt(story);
+    const prompt = story;
+    setPrompt(prompt);
 
     console.log("after setting prompt", prompt)
 
