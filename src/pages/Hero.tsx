@@ -11,7 +11,7 @@ export default function Hero() {
   console.log("In Hero")
   const navigate = useNavigate();
   const [story, setStory] = useState("");
-  const [prompt, setPrompt] = useState(""); 
+  //const [prompt, setPrompt] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
 
   const uploadCompleteStoryTextFile = async ({
@@ -53,7 +53,7 @@ export default function Hero() {
 
     console.log("after handle submit", story)
     const prompt = story;
-    setPrompt(prompt);
+    //etPrompt(prompt);
 
     console.log("after setting prompt", prompt)
 
