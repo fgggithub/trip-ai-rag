@@ -25,6 +25,7 @@ export default function Hero() {
 
     console.log("after handle submit", story)
     setPrompt(story);
+    console.log("after setting prompy", prompt)
     
 
     if (outputStory?.story) {
@@ -40,9 +41,11 @@ export default function Hero() {
   };
 
   const saveData = async ({
+    prompt,
     story,
     title,
   }: {
+    prompt: string;
     story: string;
     title: string;
   }) => {
