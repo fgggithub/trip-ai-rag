@@ -26,12 +26,14 @@ export default function Hero() {
     console.log("in upload story", prompt)
     const complete_story = `${prompt}\n${story}`;
     console.log("in upload complete_story", complete_story);
+    const sanitizedTitle = title.replace(/\s+/g, '');
+    console.log("Sanitized title:", sanitizedTitle);
   
     const textFileData = new Blob([complete_story], { type: "text/plain" });
     console.log("textFileData", textFileData);
   
     const textUploadResult = await uploadData({
-      path: `textfiles/${title}.txt`,
+      path: `textfiles/${sanitizedTitle}.txt`,
       data: textFileData,
       options: {
         contentType: "text/plain",
