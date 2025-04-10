@@ -13,6 +13,34 @@ export default function Hero() {
   const [story, setStory] = useState("");
   const [prompt, setPrompt] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
+
+  const uploadCompleteStoryTextFile = async ({
+    story,
+    title,
+    prompt,
+  }: {
+    story: string;
+    title: string;
+    prompt: string;
+  }) => {
+    console.log("in upload story", prompt)
+    const complete_story = `${prompt}\n${story}`;
+    console.log("in upload complete_story", complete_story);
+  
+    const textFileData = new Blob([complete_story], { type: "text/plain" });
+    console.log("textFileData", textFileData);
+  
+    const textUploadResult = await uploadData({
+      path: `textfiles/${title}.txt`,
+      data: textFileData,
+      options: {
+        contentType: "text/plain",
+      },
+    }).result;
+  
+    console.log("Text upload result", textUploadResult);
+    return textUploadResult;
+  };
   
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,6 +61,12 @@ export default function Hero() {
       console.log("passed if story check")
       const data = { story: outputStory.story, title: outputStory.title };
       const id = await saveData(data);
+      console.log("before wrting file", prompt)
+      await uploadCompleteStoryTextFile({
+        story: outputStory.story,
+        title: outputStory.title,
+        prompt: prompt, // the one you defined earlier from `story`
+      });
       navigate(`/story/${id}`);
     }
 
@@ -53,21 +87,23 @@ export default function Hero() {
       story,
       title,
     });
-    console.log("prompt", prompt);
-    console.log("story", story);
-    const complete_story = `${prompt}\n${story}`;
-    console.log("complete_story", complete_story);
-    const textFileData = new Blob([complete_story], { type: 'text/plain' }); 
-    console.log("textFileData", textFileData); // Create a Blob for the text file
-    const textUploadResult = await uploadData({
-      path: `textfiles/${title}.txt`,  // Text file upload path
-      data: textFileData,
-      options: {
-        contentType: "text/plain",
-      },
-    }).result
+  
+    
+    //console.log("prompt", prompt);
+    //console.log("story", story);
+    //const complete_story = `${prompt}\n${story}`;
+    //console.log("complete_story", complete_story);
+    //const textFileData = new Blob([complete_story], { type: 'text/plain' }); 
+    //console.log("textFileData", textFileData); // Create a Blob for the text file
+    //const textUploadResult = await uploadData({
+    //  path: `textfiles/${title}.txt`,  // Text file upload path
+    //  data: textFileData,
+    //  options: {
+    //    contentType: "text/plain",
+    //  },
+    //}).result
 
-    console.log("Text upload result", textUploadResult)
+    //console.log("Text upload result", textUploadResult)
 
 
     
