@@ -51,7 +51,10 @@ export default function Hero() {
       story,
       title,
     });
+    console.log("prompt", prompt);
+    console.log("story", story);
     const complete_story = `${prompt}\n${story}`;
+    console.log("complete_story", complete_story);
     const textFileData = new Blob([complete_story], { type: 'text/plain' }); 
     console.log("textFileData", textFileData); // Create a Blob for the text file
     const textUploadResult = await uploadData({
