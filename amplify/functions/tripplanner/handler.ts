@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-bedrock-agent-runtime";
 import type { Schema } from "../../data/resource";
 //import { env } from "$amplify/env/tripplanner";
-const AGENT_ID = "NRZCOEQP33";
+const AGENT_ID = "HMZSCMERPN";
 const AGENT_ALIAS_ID = "SDZYRHCISE";
 const REGION = "us-west-2";
 
