@@ -6,6 +6,7 @@ import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { storage, knowledgeBaseBucket } from "./storage/resource";
 import { getNews } from "./functions/getNews/resource";
 import { readKnowledgebase } from "./functions/readKnowledgebase/resource";
+import { tripplanner } from "./functions/tripplanner/resource";
 
 const KB_REGION = "us-west-2";
 
@@ -22,6 +23,7 @@ const backend = defineBackend({
   readKnowledgebase,
   knowledgeBaseBucket,
   conversationHandler,
+  tripplanner
 });
 
 backend.generateImage.resources.lambda.addToRolePolicy(
@@ -36,6 +38,14 @@ backend.readKnowledgebase.resources.lambda.addToRolePolicy(
   new PolicyStatement({
     effect: Effect.ALLOW,
     actions: ["bedrock:Retrieve"],
+    resources: [`*`],
+  })
+);
+
+backend.tripplanner.resources.lambda.addToRolePolicy(
+  new PolicyStatement({
+    effect: Effect.ALLOW,
+    actions: ["bedrock:InvokeAgent"],
     resources: [`*`],
   })
 );

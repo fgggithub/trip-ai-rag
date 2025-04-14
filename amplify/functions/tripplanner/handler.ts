@@ -9,7 +9,7 @@ const AGENT_ID = "NRZCOEQP33";
 const AGENT_ALIAS_ID = "SDZYRHCISE";
 const REGION = "us-west-2";
 
-export const handler: Schema["readKnowledgebase"]["functionHandler"] = async (event) => {
+export const handler: Schema["tripplanner"]["functionHandler"] = async (event) => {
   const inputText = String(event.arguments.prompt);
 
   const client = new BedrockAgentRuntimeClient({ region: "us-west-2" });
