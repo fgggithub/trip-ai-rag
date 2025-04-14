@@ -2,6 +2,7 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 import { generateImage } from "../functions/generateImage/resource";
 import { getNews } from "../functions/getNews/resource";
 import { readKnowledgebase } from "../functions/readKnowledgebase/resource";
+import { tripplanner} from "../functions/tripplanner/resource";
 console.log("resource.ts")
 
 import { defineConversationHandlerFunction } from "@aws-amplify/backend-ai/conversation";
@@ -58,6 +59,13 @@ const schema = a.schema({
             "Help generate a story prompt using " +
             "when user asks about an existing story",
           query: a.ref("readKnowledgebase"),
+        }),
+        a.ai.dataTool({
+          name: "tripplanner",
+          description:
+            "Help generate a story prompt using " +
+            "when user to use trip planner to create an itinerary",
+          query: a.ref("tripplanner"),
         }),
       ],
     })
@@ -147,6 +155,20 @@ const schema = a.schema({
     )
     .handler(a.handler.function(readKnowledgebase))
     .authorization((allow) => [allow.authenticated()]),
+
+
+  tripplanner: a
+   .query()
+   .arguments({
+      prompt: a.string(),
+   })
+   .returns(
+     a.customType({
+       resultText: a.string()
+    })
+)
+.handler(a.handler.function(tripplanner))
+.authorization((allow) => [allow.authenticated()]),
 });
 export type Schema = ClientSchema<typeof schema>;
 
