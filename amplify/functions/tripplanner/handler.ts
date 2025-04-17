@@ -1,52 +1,69 @@
-
 import {
   BedrockAgentRuntimeClient,
   InvokeAgentCommand
 } from "@aws-sdk/client-bedrock-agent-runtime";
+import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import type { Schema } from "../../data/resource";
-//import { env } from "$amplify/env/tripplanner";
+
 const AGENT_ID = "HMZSCMERPN";
 const AGENT_ALIAS_ID = "SDZYRHCISE";
 const REGION = "us-west-2";
+const TABLE_NAME = "tripplanner_results";
+
+const bedrockClient = new BedrockAgentRuntimeClient({ region: REGION });
+const dynamoClient = new DynamoDBClient({ region: REGION });
 
 export const handler: Schema["tripplanner"]["functionHandler"] = async (event) => {
   const inputText = String(event.arguments.prompt);
-
-  const client = new BedrockAgentRuntimeClient({ region: "us-west-2" });
+  const sessionId = "session-001"; // You can also randomize this if needed
 
   const input = {
     agentId: AGENT_ID,
     agentAliasId: AGENT_ALIAS_ID,
-    sessionId: "session-001",
+    sessionId,
     inputText,
-    enableTrace: true
+    enableTrace: true,
   };
-  console.log("input", input);
+
+  console.log("Input:", input);
+
   try {
     const command = new InvokeAgentCommand(input);
-    const response = await client.send(command);
+    const response = await bedrockClient.send(command);
 
     let resultText = "";
-    console.log("input", response);
+
     if (response.completion) {
       for await (const event of response.completion) {
         if (event.chunk?.bytes) {
           resultText += new TextDecoder().decode(event.chunk.bytes);
         }
-        console.log("result text", resultText);
       }
     } else {
       resultText = "No completion response from the agent.";
     }
 
+    // Save to DynamoDB
+    const putCommand = new PutItemCommand({
+      TableName: TABLE_NAME,
+      Item: {
+        id: { S: `${Date.now()}-${Math.floor(Math.random() * 1000)}` },
+        prompt: { S: inputText },
+        response: { S: resultText },
+        timestamp: { N: `${Date.now()}` },
+      },
+    });
+
+    await dynamoClient.send(putCommand);
+
     return {
       resultText
     };
   } catch (error) {
-    console.error("Error invoking agent:", error);
+    console.error("Error invoking agent or writing to DynamoDB:", error);
 
     return {
-      resultText: "An error occurred while invoking the agent."
+      resultText: "An error occurred while processing your request."
     };
   }
 };
